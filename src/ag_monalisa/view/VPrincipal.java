@@ -1,10 +1,17 @@
 package ag_monalisa.view;
 
+import java.awt.BorderLayout;
+
 public class VPrincipal extends javax.swing.JFrame {
-    public Lienzo l;
+    public Lienzo pnl_input,pnl_output;
     public VPrincipal() {
         initComponents();
-        l = new Lienzo();
+        this.pnl_input = new Lienzo();
+        this.pnl_output = new Lienzo();
+        this.pnl_input.setBounds(0, 0, 100, 100);
+        this.pnl_output.setBounds(0, 100, 100, 100);
+        this.pnl_container.add(this.pnl_input);
+        this.pnl_container.add(this.pnl_output);
     }
 
     /**
@@ -18,39 +25,21 @@ public class VPrincipal extends javax.swing.JFrame {
 
         btn_selectImg = new javax.swing.JButton();
         pnl_container = new javax.swing.JPanel();
-        pnl_input = new javax.swing.JPanel();
         btn_ejecutar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btn_selectImg.setText("Selecciona Imagen");
 
-        javax.swing.GroupLayout pnl_inputLayout = new javax.swing.GroupLayout(pnl_input);
-        pnl_input.setLayout(pnl_inputLayout);
-        pnl_inputLayout.setHorizontalGroup(
-            pnl_inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        pnl_inputLayout.setVerticalGroup(
-            pnl_inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout pnl_containerLayout = new javax.swing.GroupLayout(pnl_container);
         pnl_container.setLayout(pnl_containerLayout);
         pnl_containerLayout.setHorizontalGroup(
             pnl_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(461, Short.MAX_VALUE))
+            .addGap(0, 567, Short.MAX_VALUE)
         );
         pnl_containerLayout.setVerticalGroup(
             pnl_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+            .addGap(0, 324, Short.MAX_VALUE)
         );
 
         btn_ejecutar.setText("Ejecutar");
@@ -120,6 +109,5 @@ public class VPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btn_ejecutar;
     public javax.swing.JButton btn_selectImg;
     public javax.swing.JPanel pnl_container;
-    private javax.swing.JPanel pnl_input;
     // End of variables declaration//GEN-END:variables
 }
