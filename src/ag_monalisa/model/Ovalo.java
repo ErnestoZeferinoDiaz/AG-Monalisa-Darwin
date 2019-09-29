@@ -4,29 +4,36 @@ import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 
 public class Ovalo {
+    private Configuracion conf;
     private double radiusHorizontal;
     private double radiusVertical;
     private int red,green,blue,alpha;
     private int x,y;
     
+    
+    public Ovalo(Configuracion conf){
+        this.conf=conf;
+    }
+    
     public Ellipse2D getOvalo(){
         return new Ellipse2D.Double(this.getX(),this.getY(),this.getRadiusHorizontal(),this.getRadiusVertical());
     }
+        
     public void randPosition(){
-        this.setX((int) (Math.random()*(200)));
-        this.setY((int) (Math.random()*(125)));
+        this.setX(Configuracion.intRand(0,this.conf.getWidth()));
+        this.setY(Configuracion.intRand(0,this.conf.getHeight()));
     }
     
     public void randColor(){
-        this.setRed((int) (Math.random()*(256)));
-        this.setGreen((int) (Math.random()*(256)));
-        this.setBlue((int) (Math.random()*(256)));
-        this.setAlpha((int) (Math.random()*(256)));
+        this.setRed(Configuracion.intRand(0,256));
+        this.setGreen(Configuracion.intRand(0,256));
+        this.setBlue(Configuracion.intRand(0,256));
+        this.setAlpha(Configuracion.intRand(0,256));
     }
     
     public void randRadius(){
-        this.setRadiusHorizontal((int) (Math.random()*(200/2)));
-        this.setRadiusVertical((int) (Math.random()*(125/2)));
+        this.setRadiusHorizontal(Configuracion.intRand(this.conf.getMinRadiusHorizontal(),this.conf.getMaxRadiusHorizontal()));
+        this.setRadiusVertical(Configuracion.intRand(this.conf.getMinRadiusVertical(),this.conf.getMaxRadiusVertical()));
     }
     
     public Color getColor(){
@@ -103,6 +110,14 @@ public class Ovalo {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Configuracion getConf() {
+        return conf;
+    }
+
+    public void setConf(Configuracion conf) {
+        this.conf = conf;
     }
 
     
