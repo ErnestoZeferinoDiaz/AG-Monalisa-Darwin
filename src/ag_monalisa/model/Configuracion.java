@@ -1,6 +1,9 @@
 package ag_monalisa.model;
 
+import ag_monalisa.model.Fitness.FitnessBasic;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.Comparator;
 
 public class Configuracion {
     private BufferedImage obj;
@@ -12,6 +15,17 @@ public class Configuracion {
     private double minRadiusHorizontal, maxRadiusHorizontal;
     private double minRadiusVertical, maxRadiusVertical;
     private int noGenes;    
+    private int noPoblacion;
+    
+    private FitnessBasic fitness;
+    private Comparator<ImgCromosoma> compare;
+    
+    public Configuracion(){
+        minRed=255; maxRed=0;
+        minGreen=255; maxGreen=0;
+        minBlue=255; maxBlue=0;
+        minAlpha=255; maxAlpha=0;
+    }
     
     public static double doubleRand(double min, double max){
         return min+Math.random()*(max-min);
@@ -25,12 +39,64 @@ public class Configuracion {
         return (int) Configuracion.doubleRand(min, max);
     }
 
+    public Comparator<ImgCromosoma> getCompare() {
+        return compare;
+    }
+
+    public void setCompare(Comparator<ImgCromosoma> compare) {
+        this.compare = compare;
+    }
+
+    
+    
+    
     public BufferedImage getObj() {
         return obj;
     }
 
     public void setObj(BufferedImage obj) {
         this.obj = obj;
+        double min;
+        Color tmp;
+        
+        this.setWidth(this.obj.getWidth());
+        this.setHeight(this.obj.getHeight());
+        min=this.getWidth()*this.getHeight();
+        min=Math.sqrt(min);
+        this.setMinRadiusHorizontal(10);
+        this.setMinRadiusVertical(10);
+        this.setMaxRadiusHorizontal(min);
+        this.setMaxRadiusVertical(min);
+        
+        for (int i = 0; i < this.getWidth(); i++) {
+            for (int j = 0; j < this.getHeight(); j++) {
+                tmp = new Color(this.obj.getRGB(i, j));
+                if(tmp.getRed()<this.getMinRed()){
+                    this.setMinRed(tmp.getRed());
+                }
+                if(tmp.getRed()>this.getMaxRed()){
+                    this.setMaxRed(tmp.getRed());
+                }
+                if(tmp.getBlue()<this.getMinBlue()){
+                    this.setMinBlue(tmp.getBlue());
+                }
+                if(tmp.getBlue()>this.getMaxBlue()){
+                    this.setMaxBlue(tmp.getBlue());
+                }
+                if(tmp.getGreen()<this.getMinGreen()){
+                    this.setMinGreen(tmp.getGreen());
+                }
+                if(tmp.getGreen()>this.getMaxGreen()){
+                    this.setMaxGreen(tmp.getGreen());
+                }
+                if(tmp.getAlpha()<this.getMinAlpha()){
+                    this.setMinAlpha(tmp.getAlpha());
+                }
+                if(tmp.getAlpha()>this.getMaxAlpha()){
+                    this.setMaxAlpha(tmp.getAlpha());
+                }                
+            }
+        }
     }
 
     public int getWidth() {
@@ -151,6 +217,22 @@ public class Configuracion {
 
     public void setNoGenes(int noGenes) {
         this.noGenes = noGenes;
+    }
+
+    public FitnessBasic getFitness() {
+        return fitness;
+    }
+
+    public void setFitness(FitnessBasic fitness) {
+        this.fitness = fitness;
+    }
+
+    public int getNoPoblacion() {
+        return noPoblacion;
+    }
+
+    public void setNoPoblacion(int noPoblacion) {
+        this.noPoblacion = noPoblacion;
     }
     
     

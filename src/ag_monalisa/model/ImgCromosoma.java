@@ -20,6 +20,17 @@ public class ImgCromosoma {
         this.setCreateImg(false);
     }
     
+    public void rand(){
+        Ovalo tmp;
+        for (int i = 0; i < this.conf.getNoGenes(); i++) {
+            tmp = new Ovalo(this.conf);
+            tmp.randColor();
+            tmp.randPosition();
+            tmp.randRadius();
+            this.add(tmp);
+        }
+    }
+    
     public void add(Ovalo o){
         this.ovalos.add(o);
         this.setCalcFitness(false);
@@ -83,6 +94,10 @@ public class ImgCromosoma {
     }
 
     public double getFitness() {
+        if(!this.isCalcFitness()){
+            this.setFitness(this.conf.getFitness().evaluate(this));
+            this.setCalcFitness(true);
+        }
         return fitness;
     }
 
