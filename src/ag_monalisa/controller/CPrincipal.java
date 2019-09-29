@@ -1,7 +1,9 @@
 package ag_monalisa.controller;
 
 import ag_monalisa.model.Configuracion;
+import ag_monalisa.model.Fitness.ImgComparador;
 import ag_monalisa.model.Fitness.ImgFitness;
+import ag_monalisa.model.Operators.ImgMutacionColor;
 import ag_monalisa.view.VPrincipal;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -22,6 +24,8 @@ public class CPrincipal implements ActionListener{
     private BufferedImage fimg;
     private Configuracion conf;
     private ImgFitness fit;
+    private ImgComparador comp;
+    
     
     public CPrincipal(){
         this.vp = new VPrincipal();
@@ -29,7 +33,15 @@ public class CPrincipal implements ActionListener{
         
         this.conf = new Configuracion();
         this.fit = new ImgFitness();
+        this.comp = new ImgComparador();
+        
+        
         this.fit.setConf(this.conf);
+        this.conf.setFitness(this.fit);
+        this.conf.setCompare(this.comp);
+        this.conf.setNoPoblacion(200);
+        
+        this.conf.addOperator(new ImgMutacionColor());
         
         this.vp.btn_ejecutar.addActionListener(this);
         this.vp.btn_selectImg.addActionListener(this);

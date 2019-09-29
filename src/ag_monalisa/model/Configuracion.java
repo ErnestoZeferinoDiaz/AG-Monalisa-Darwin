@@ -1,9 +1,11 @@
 package ag_monalisa.model;
 
 import ag_monalisa.model.Fitness.FitnessBasic;
+import ag_monalisa.model.Operators.Operator;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public class Configuracion {
     private BufferedImage obj;
@@ -16,15 +18,18 @@ public class Configuracion {
     private double minRadiusVertical, maxRadiusVertical;
     private int noGenes;    
     private int noPoblacion;
+    private double porcentajeMutacion;
     
     private FitnessBasic fitness;
     private Comparator<ImgCromosoma> compare;
-    
+    private LinkedList<Operator> operators;
     public Configuracion(){
         minRed=255; maxRed=0;
         minGreen=255; maxGreen=0;
         minBlue=255; maxBlue=0;
         minAlpha=255; maxAlpha=0;
+        
+        this.operators = new LinkedList();
     }
     
     public static double doubleRand(double min, double max){
@@ -38,7 +43,28 @@ public class Configuracion {
     public static int intRand(double min, double max){
         return (int) Configuracion.doubleRand(min, max);
     }
+    
+    public void addOperator(Operator op){
+        this.operators.add(op);
+    }
+    
+    public Operator getOperator(int index){
+        return this.operators.get(index);
+    }
+    
+    public int sizeOperators(){
+        return this.operators.size();
+    }
 
+    public double getPorcentajeMutacion() {
+        return porcentajeMutacion;
+    }
+
+    public void setPorcentajeMutacion(double porcentajeMutacion) {
+        this.porcentajeMutacion = porcentajeMutacion;
+    }
+    
+    
     public Comparator<ImgCromosoma> getCompare() {
         return compare;
     }

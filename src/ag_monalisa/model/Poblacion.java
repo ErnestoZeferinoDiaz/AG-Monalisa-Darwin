@@ -22,6 +22,40 @@ public class Poblacion {
             this.add(tmp);
         }
     }
+
+    public Configuracion getConf() {
+        return conf;
+    }
+
+    public void setConf(Configuracion conf) {
+        this.conf = conf;
+    }
+
+    public LinkedList<ImgCromosoma> getPoblacion() {
+        return poblacion;
+    }
+
+    public void setPoblacion(LinkedList<ImgCromosoma> poblacion) {
+        this.poblacion = poblacion;
+    }
+
+    public int getIndexBest() {
+        return indexBest;
+    }
+
+    public void setIndexBest(int indexBest) {
+        this.indexBest = indexBest;
+    }
+
+    public boolean isCalcIndexBest() {
+        return calcIndexBest;
+    }
+
+    public void setCalcIndexBest(boolean calcIndexBest) {
+        this.calcIndexBest = calcIndexBest;
+    }
+    
+    
     
     public ImgCromosoma getBest(){
         int n=0;
