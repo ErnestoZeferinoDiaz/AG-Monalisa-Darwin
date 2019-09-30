@@ -7,6 +7,7 @@ public class ImgComparador implements Comparator<ImgCromosoma>{
 
     @Override
     public int compare(ImgCromosoma o1, ImgCromosoma o2) {
+        
         if(o1.getFitness()<o2.getFitness()){
             return -1;
         }else{

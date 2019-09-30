@@ -22,6 +22,7 @@ public class ImgCromosoma {
     
     public void rand(){
         Ovalo tmp;
+        
         for (int i = 0; i < this.conf.getNoGenes(); i++) {
             tmp = new Ovalo(this.conf);
             tmp.randColor();
@@ -73,7 +74,7 @@ public class ImgCromosoma {
             this.gTmp = (Graphics2D) this.img.getGraphics();
             for (int i = 0; i < this.size(); i++) {
                 this.gTmp.setColor(this.get(i).getColor());
-                this.gTmp.draw(this.get(i).getOvalo());
+                this.gTmp.fill(this.get(i).getOvalo());
             }
             this.setCreateImg(true);
         }

@@ -3,10 +3,9 @@ package ag_monalisa.model.Operators;
 import ag_monalisa.model.Configuracion;
 import ag_monalisa.model.Poblacion;
 
-public class ImgMutacionColor implements Operator{
+public class ImgMutacionRadius implements Operator{
     private Configuracion conf;
     private Poblacion init;
-    
     
     @Override
     public void execute() {
@@ -15,7 +14,7 @@ public class ImgMutacionColor implements Operator{
         for (int i = 0; i < n; i++) {
             indexCromosoma = Configuracion.intRand(0, n-1);
             indexOval = Configuracion.intRand(0, this.conf.getNoGenes()-1);
-            this.init.get(indexCromosoma).get(indexOval).randColor();
+            this.init.get(indexCromosoma).get(indexOval).randRadius();
             this.init.get(indexCromosoma).setCalcFitness(false);
             this.init.get(indexCromosoma).setCreateImg(false);
         }

@@ -3,7 +3,11 @@ package ag_monalisa.controller;
 import ag_monalisa.model.Configuracion;
 import ag_monalisa.model.Fitness.ImgComparador;
 import ag_monalisa.model.Fitness.ImgFitness;
+import ag_monalisa.model.Genotipo;
+import ag_monalisa.model.Operators.Elitismo;
 import ag_monalisa.model.Operators.ImgMutacionColor;
+import ag_monalisa.model.Operators.ImgMutacionPosition;
+import ag_monalisa.model.Operators.ImgMutacionRadius;
 import ag_monalisa.view.VPrincipal;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -25,7 +29,7 @@ public class CPrincipal implements ActionListener{
     private Configuracion conf;
     private ImgFitness fit;
     private ImgComparador comp;
-    
+    private Genotipo g;
     
     public CPrincipal(){
         this.vp = new VPrincipal();
@@ -34,14 +38,19 @@ public class CPrincipal implements ActionListener{
         this.conf = new Configuracion();
         this.fit = new ImgFitness();
         this.comp = new ImgComparador();
-        
+        this.g = new Genotipo(conf);
         
         this.fit.setConf(this.conf);
         this.conf.setFitness(this.fit);
         this.conf.setCompare(this.comp);
         this.conf.setNoPoblacion(200);
+        this.conf.setPorcentajeMutacion(0.5);
         
+        this.conf.addOperator(new Elitismo());
         this.conf.addOperator(new ImgMutacionColor());
+        this.conf.addOperator(new ImgMutacionRadius());
+        this.conf.addOperator(new ImgMutacionPosition());
+        
         
         this.vp.btn_ejecutar.addActionListener(this);
         this.vp.btn_selectImg.addActionListener(this);
@@ -51,6 +60,14 @@ public class CPrincipal implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(this.vp.btn_selectImg)){
             cargarImagen();
+        }else if(e.getSource().equals(this.vp.btn_ejecutar)){
+            this.g.init();
+            new Thread(this.vp.pnl_output).start();
+            do{
+                this.g.evolucion();
+                System.out.println("Fitn: "+this.g.getPoblacion().getBest().getFitness());
+            }while(true);
+            
         }
     }
     

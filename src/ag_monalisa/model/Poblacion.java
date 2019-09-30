@@ -22,6 +22,28 @@ public class Poblacion {
             this.add(tmp);
         }
     }
+    
+    public void clear(){
+        this.poblacion.clear();
+    }
+    
+    public void add(ImgCromosoma img){
+        this.poblacion.add(img);
+        this.calcIndexBest = false;
+    }
+    
+    public void set(int index,ImgCromosoma img){
+        this.poblacion.set(index,img);
+        this.calcIndexBest = false;
+    }
+    
+    public ImgCromosoma get(int index){
+        return this.poblacion.get(index);
+    }
+    
+    public int size(){
+        return this.poblacion.size();
+    }
 
     public Configuracion getConf() {
         return conf;
@@ -71,21 +93,5 @@ public class Poblacion {
         return this.get(this.indexBest);
     }
     
-    public void add(ImgCromosoma img){
-        this.poblacion.add(img);
-        this.calcIndexBest = false;
-    }
     
-    public void set(int index,ImgCromosoma img){
-        this.poblacion.set(index,img);
-        this.calcIndexBest = false;
-    }
-    
-    public ImgCromosoma get(int index){
-        return this.poblacion.get(index);
-    }
-    
-    public int size(){
-        return this.poblacion.size();
-    }
 }

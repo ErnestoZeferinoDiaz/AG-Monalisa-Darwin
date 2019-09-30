@@ -17,6 +17,22 @@ public class Genotipo {
         }
     }
     
+    public void evolucion(){
+        for(int x=0; x<this.conf.sizeOperators(); x++){
+            this.conf.getOperator(x).execute();
+        }
+    }
+
+    public Poblacion getPoblacion() {
+        return inicio;
+    }
+
+    public void setInicio(Poblacion inicio) {
+        this.inicio = inicio;
+    }
+    
+    
+    
     public Configuracion getConf() {
         return conf;
         

@@ -89,6 +89,7 @@ public class Configuracion {
         this.setHeight(this.obj.getHeight());
         min=this.getWidth()*this.getHeight();
         min=Math.sqrt(min);
+        this.setNoGenes((int) min);
         this.setMinRadiusHorizontal(10);
         this.setMinRadiusVertical(10);
         this.setMaxRadiusHorizontal(min);

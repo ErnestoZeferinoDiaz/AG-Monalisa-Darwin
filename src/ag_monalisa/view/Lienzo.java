@@ -1,11 +1,13 @@
 package ag_monalisa.view;
 
+import ag_monalisa.model.Genotipo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
-public class Lienzo extends JPanel{
+public class Lienzo extends JPanel implements Runnable{
+    private Genotipo g;
     private BufferedImage img;
     private boolean insertImg;
     
@@ -31,6 +33,20 @@ public class Lienzo extends JPanel{
         this.img = img;
         this.setSize(this.img.getWidth(),this.img.getHeight());
         this.insertImg=true;
+        
+    }
+
+    public boolean isInsertImg() {
+        return insertImg;
+    }
+
+    public void setInsertImg(boolean insertImg) {
+        this.insertImg = insertImg;
+    }
+
+    
+    @Override
+    public void run() {
         this.repaint();
     }
     
